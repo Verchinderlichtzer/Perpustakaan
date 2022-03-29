@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="berhasil" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\berhasil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="crud_edit_common" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\crud_edit_common.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="crud_edit_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\crud_edit_pressed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="crud_hapus_common" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\crud_hapus_common.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="crud_hapus_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\crud_hapus_pressed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="crud_print_common" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\crud_print_common.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="crud_print_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\crud_print_pressed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="crud_refresh_common" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\crud_refresh_common.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="crud_refresh_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\crud_refresh_pressed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="crud_simpan_common" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\crud_simpan_common.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="crud_simpan_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\crud_simpan_pressed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gagal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\gagal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="konfirmasi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\konfirmasi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_anggota_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\Perpustakaan\sidebar_anggota_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_anggota_common" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\Perpustakaan\sidebar_anggota_common.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_anggota_tracking" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\Perpustakaan\sidebar_anggota_tracking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_buku_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\Perpustakaan\sidebar_buku_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_buku_common" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\Perpustakaan\sidebar_buku_common.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_buku_tracking" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\Perpustakaan\sidebar_buku_tracking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_catatan_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\sidebar_catatan_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_catatan_common" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\sidebar_catatan_common.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_catatan_tracking" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\sidebar_catatan_tracking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_kembali_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\Perpustakaan\sidebar_kembali_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_kembali_common" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\Perpustakaan\sidebar_kembali_common.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_kembali_tracking" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\Perpustakaan\sidebar_kembali_tracking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_laporan_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\sidebar_laporan_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_laporan_common" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\sidebar_laporan_common.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_laporan_tracking" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\sidebar_laporan_tracking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_logout_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\sidebar_logout_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_logout_common" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\sidebar_logout_common.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_logout_tracking" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\sidebar_logout_tracking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_pinjam_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\Perpustakaan\sidebar_pinjam_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_pinjam_common" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\Perpustakaan\sidebar_pinjam_common.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_pinjam_tracking" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\Perpustakaan\sidebar_pinjam_tracking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_user_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\sidebar_user_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_user_common" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\sidebar_user_common.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar_user_tracking" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\sidebar_user_tracking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="thumbnail_common" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\Perpustakaan\thumbnail_common.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="thumbnail_login" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\Perpustakaan\thumbnail_login.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="thumbnail_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\Perpustakaan\thumbnail_pressed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="title_anggota" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\Perpustakaan\title_anggota.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="title_buku" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\Perpustakaan\title_buku.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="title_catatan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\title_catatan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="title_home" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\title_home.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="title_kembali" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\Perpustakaan\title_kembali.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="title_laporan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\title_laporan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="title_pinjam" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\Perpustakaan\title_pinjam.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="title_user" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\..\Pictures\An Image\General\title_user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+</root>
