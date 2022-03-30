@@ -23,19 +23,8 @@ Public Class Pinjam
     Dim Params As ReportParameter()
 
     Sub Notis()
-        Dim x = 0
-        QRL("SELECT ID FROM TBLPinjam ORDER BY ID ASC")
-        Do While DR.Read
-            x += 1
-            If DR.HasRows Then
-                If DR(0) = x Then
-                    ID = x + 1
-                Else
-                    ID = x
-                    Exit Sub
-                End If
-            End If
-        Loop
+        QR("SELECT ID FROM TBLPinjam ORDER BY ID DESC")
+        If DR.HasRows Then ID = DR(0) + 1
     End Sub
 
     Sub Clear()
@@ -158,6 +147,26 @@ Public Class Pinjam
         End If
     End Sub
 
+#Region "Print / Delete / Clear"
+    Private Sub BTNPrint_Click(sender As Object, e As EventArgs) Handles BTNPrint.Click
+        Dim CurrentReportDataSource = New ReportDataSource()
+        Rdt.Clear()
+        Terlapor.Show()
+        Terlapor.RV.LocalReport.ReportEmbeddedResource = "Perpustakaan.LaporanPinjam.rdlc"
+        CurrentReportDataSource.Name = "DataPinjam"
+        CurrentReportDataSource.Value = TBLPinjamBindingSource
+        Terlapor.RV.LocalReport.DataSources.Add(CurrentReportDataSource)
+        DA = New SqlDataAdapter("SELECT Nama, Alamat, Telepon, Email, Judul, TglPinjam, TglKembali, Keterangan FROM TBLAnggota INNER JOIN TBLPinjam ON TBLAnggota.ID_Anggota = TBLPinjam.ID_Anggota INNER JOIN TBLBuku ON TBLPinjam.ID_Buku = TBLBuku.ID_Buku WHERE TBLPinjam.ID_Anggota = " & Val(TAnggota.SelectedItem.Substring(0, TAnggota.SelectedItem.IndexOf(" "))), CONN)
+        DA.Fill(Rdt.TBLPinjam)
+        For Each param As ReportParameter In Params
+            Terlapor.RV.LocalReport.SetParameters(param)
+        Next
+        Terlapor.RV.SetDisplayMode(DisplayMode.PrintLayout)
+        Terlapor.RV.ZoomMode = ZoomMode.Percent
+        Terlapor.RV.ZoomPercent = 100
+        Terlapor.RV.RefreshReport()
+    End Sub
+
     Private Sub BTNHapus_Click(sender As Object, e As EventArgs) Handles BTNHapus.Click
         QR("SELECT ID FROM TBLPinjam WHERE ID = " & DGV.Rows(RowTerpilih).Cells(0).Value)
         If Not DR.HasRows Then
@@ -185,6 +194,7 @@ Public Class Pinjam
         CurrentPageBuku = 1
         Clear()
     End Sub
+#End Region
 
 #Region "DGVBarang"
     Dim FetchBuku As Integer
@@ -268,17 +278,17 @@ Public Class Pinjam
                 DGV.Rows(x - 1).Cells(10).ReadOnly = 1
                 Continue For
             End If
+            If Baris(x)(7) = True Then
+                DGV.Rows(x - 1).Cells(6).ReadOnly = 1
+            ElseIf Baris(x)(7) = False Then
+                DGV.Rows(x - 1).Cells(6).ReadOnly = 0
+            End If
             If Baris(x)(10) = True Then
                 DGV.Rows(x - 1).Cells(6).ReadOnly = 1
                 DGV.Rows(x - 1).Cells(7).ReadOnly = 1
             ElseIf Baris(x)(10) = False Then
                 DGV.Rows(x - 1).Cells(6).ReadOnly = 0
                 DGV.Rows(x - 1).Cells(7).ReadOnly = 0
-            End If
-            If Baris(x)(7) = True Then
-                DGV.Rows(x - 1).Cells(6).ReadOnly = 1
-            ElseIf Baris(x)(7) = False Then
-                DGV.Rows(x - 1).Cells(6).ReadOnly = 0
             End If
             If Baris(x)(7) = False And Baris(x)(10) = False And CDate(Baris(x)(4)) < Today Then
                 DGV.Rows(x - 1).Cells(4).Style.ForeColor = Color.FromArgb(220, 53, 69)
@@ -313,11 +323,12 @@ Public Class Pinjam
     End Sub
 
     Private Sub DGV_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DGV.CellMouseClick
+        If e.RowIndex < 0 Then Exit Sub
         RowTerpilih = DGV.Rows(e.RowIndex).Index
     End Sub
 
     Private Sub DGV_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGV.CellContentClick
-        If e.RowIndex < 0 Or TAnggota.SelectedIndex = -1 Or IsDBNull(DGV.Rows(e.RowIndex).Cells(4).Value) Then Exit Sub
+        If TAnggota.SelectedIndex = -1 Or e.RowIndex < 0 OrElse IsDBNull(DGV.Rows(e.RowIndex).Cells(4).Value) Then Exit Sub
         DGV.CommitEdit(DataGridViewDataErrorContexts.Commit)
         If e.ColumnIndex = 6 Then 'Rusak
             If DGV.Rows(e.RowIndex).Cells(6).ReadOnly = True Then Exit Sub
@@ -396,22 +407,4 @@ Public Class Pinjam
     End Sub
 #End Region
 
-    Private Sub BTNPrint_Click(sender As Object, e As EventArgs) Handles BTNPrint.Click
-        Dim CurrentReportDataSource = New ReportDataSource()
-        Rdt.Clear()
-        Terlapor.Show()
-        Terlapor.RV.LocalReport.ReportEmbeddedResource = "Perpustakaan.LaporanPinjam.rdlc"
-        CurrentReportDataSource.Name = "DataPinjam"
-        CurrentReportDataSource.Value = TBLPinjamBindingSource
-        Terlapor.RV.LocalReport.DataSources.Add(CurrentReportDataSource)
-        DA = New SqlDataAdapter("SELECT Nama, Alamat, Telepon, Email, Judul, TglPinjam, TglKembali, Keterangan FROM TBLAnggota INNER JOIN TBLPinjam ON TBLAnggota.ID_Anggota = TBLPinjam.ID_Anggota INNER JOIN TBLBuku ON TBLPinjam.ID_Buku = TBLBuku.ID_Buku WHERE TBLPinjam.ID_Anggota = " & Val(TAnggota.SelectedItem.Substring(0, TAnggota.SelectedItem.IndexOf(" "))), CONN)
-        DA.Fill(Rdt.TBLPinjam)
-        For Each param As ReportParameter In Params
-            Terlapor.RV.LocalReport.SetParameters(param)
-        Next
-        Terlapor.RV.SetDisplayMode(DisplayMode.PrintLayout)
-        Terlapor.RV.ZoomMode = ZoomMode.Percent
-        Terlapor.RV.ZoomPercent = 100
-        Terlapor.RV.RefreshReport()
-    End Sub
 End Class

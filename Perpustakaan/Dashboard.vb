@@ -1,5 +1,4 @@
-﻿Imports System.IO
-Public Class Dashboard
+﻿Public Class Dashboard
 
     Sub TampilProfil()
         QR("SELECT * FROM TBLInfo")
@@ -62,8 +61,6 @@ Public Class Dashboard
     End Sub
 
     Private Sub BTNSimpan_Click(sender As Object, e As EventArgs) Handles BTNSimpan.Click
-        Ukur(DGV)
-        Exit Sub
         QN("UPDATE TBLInfo SET Nama = '" & TNama.Text & "', Alamat = '" & TAlamat.Text & "', Telepon = '" & TTelepon.Text & "', Fax = '" & TFax.Text & "', Email = '" & TEmail.Text & "', Website = '" & TWebsite.Text & "', Pengurus = '" & TPengurus.Text & "', Jabatan = '" & TJabatan.Text & "'")
         Pesan("Info Perpustakaan berhasil diubah", 1)
     End Sub
