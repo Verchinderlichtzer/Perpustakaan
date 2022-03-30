@@ -156,7 +156,7 @@ Public Class Pinjam
         CurrentReportDataSource.Name = "DataPinjam"
         CurrentReportDataSource.Value = TBLPinjamBindingSource
         Terlapor.RV.LocalReport.DataSources.Add(CurrentReportDataSource)
-        DA = New SqlDataAdapter("SELECT Nama, Alamat, Telepon, Email, Judul, TglPinjam, TglKembali, Keterangan FROM TBLAnggota INNER JOIN TBLPinjam ON TBLAnggota.ID_Anggota = TBLPinjam.ID_Anggota INNER JOIN TBLBuku ON TBLPinjam.ID_Buku = TBLBuku.ID_Buku WHERE TBLPinjam.ID_Anggota = " & Val(TAnggota.SelectedItem.Substring(0, TAnggota.SelectedItem.IndexOf(" "))), CONN)
+        DA = New SqlDataAdapter("SELECT Nama, Alamat, Telepon, Email, Judul, TglPinjam, TglKembali, Keterangan FROM TBLAnggota INNER JOIN TBLPinjam ON TBLAnggota.ID_Anggota = TBLPinjam.ID_Anggota INNER JOIN TBLBuku ON TBLPinjam.ID_Buku = TBLBuku.ID_Buku WHERE TBLPinjam.ID_Anggota = " & Val(TAnggota.SelectedItem.Substring(0, TAnggota.SelectedItem.IndexOf(" "))) & " ORDER BY ID DESC", CONN)
         DA.Fill(Rdt.TBLPinjam)
         For Each param As ReportParameter In Params
             Terlapor.RV.LocalReport.SetParameters(param)
@@ -223,11 +223,14 @@ Public Class Pinjam
     Private Sub DGVBuku_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DGVBuku.CellMouseClick
         If e.RowIndex < 0 Or TAnggota.SelectedIndex = -1 Then Exit Sub
         QR("SELECT ID_Buku FROM TBLPinjam WHERE ID_Anggota = " & Val(TAnggota.SelectedItem.Substring(0, TAnggota.SelectedItem.IndexOf(" "))) & " AND ID_Buku = " & DGVBuku.Rows(e.RowIndex).Cells(0).Value & " AND Status = 0")
-        If DR.HasRows Then
-            Pesan("Buku sedang dipinjam", 0)
+        If Dipinjam > BatasBuku Then
+            Pesan("Peminjaman melampaui batas", 0)
             Exit Sub
-        ElseIf Dipinjam >= BatasBuku Then
+        ElseIf Dipinjam = BatasBuku Then
             Pesan("Peminjaman mencapai batas", 0)
+            Exit Sub
+        ElseIf DR.HasRows Then
+            Pesan("Buku sedang dipinjam", 0)
             Exit Sub
         End If
         Notis()

@@ -111,6 +111,7 @@
         Dim Confirm As New Konfirmasi("Konfirmasi", "Hapus SEMUA data peminjaman?")
         If UserAktif = "Admin" AndAlso Confirm.ShowDialog() = DialogResult.Yes Then
             QN("DELETE FROM TBLPinjam")
+            QN("UPDATE TBLBuku SET Stok = 0")
             FetchData = 0
             CurrentPage = 1
             TampilDGV()
@@ -120,7 +121,9 @@
 
     Private Sub Batas(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TBatasHari.Validating, TBatasBuku.Validating
         QN("UPDATE TBLInfo SET BatasBuku = " & Val(TBatasBuku.Text))
+        BatasBuku = Val(TBatasBuku.Text)
         QN("UPDATE TBLInfo SET BatasHari = " & Val(TBatasHari.Text))
+        BatasHari = Val(TBatasHari.Text)
     End Sub
 
     Private Sub Batas1(sender As Object, e As EventArgs) Handles TBatasHari.TextChanged, TBatasBuku.TextChanged
