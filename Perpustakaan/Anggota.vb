@@ -66,7 +66,7 @@
     End Sub
 
     Private Sub BTNHapus_Click(sender As Object, e As EventArgs) Handles BTNHapus.Click
-        QR("SELECT ID_Anggota FROM TBLKeluar WHERE ID_Anggota = " & Val(TID.Text) & "")
+        QR("SELECT ID_Anggota FROM TBLPinjam WHERE ID_Anggota = " & Val(TID.Text) & "")
         If DR.HasRows Then
             Pesan("Anggota pernah terlibat dalam transaksi", 0)
             Exit Sub

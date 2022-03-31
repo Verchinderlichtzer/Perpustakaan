@@ -61,7 +61,12 @@
     End Sub
 
     Private Sub BTNSimpan_Click(sender As Object, e As EventArgs) Handles BTNSimpan.Click
-        QN("UPDATE TBLInfo SET Nama = '" & TNama.Text & "', Alamat = '" & TAlamat.Text & "', Telepon = '" & TTelepon.Text & "', Fax = '" & TFax.Text & "', Email = '" & TEmail.Text & "', Website = '" & TWebsite.Text & "', Pengurus = '" & TPengurus.Text & "', Jabatan = '" & TJabatan.Text & "'")
+        QR("SELECT Nama FROM TBLInfo")
+        If Not DR.HasRows Then
+            QN("INSERT INTO TBLInfo VALUES('" & TNama.Text & "','" & TAlamat.Text & "','" & TTelepon.Text & "','" & TFax.Text & "','" & TEmail.Text & "','" & TWebsite.Text & "','" & TPengurus.Text & "','" & TJabatan.Text & "',0,0)")
+        Else
+            QN("UPDATE TBLInfo SET Nama = '" & TNama.Text & "', Alamat = '" & TAlamat.Text & "', Telepon = '" & TTelepon.Text & "', Fax = '" & TFax.Text & "', Email = '" & TEmail.Text & "', Website = '" & TWebsite.Text & "', Pengurus = '" & TPengurus.Text & "', Jabatan = '" & TJabatan.Text & "'")
+        End If
         Pesan("Info Perpustakaan berhasil diubah", 1)
     End Sub
 
