@@ -60,6 +60,11 @@
         End If
     End Sub
 
+    Private Sub InputAngka(sender As Object, e As KeyPressEventArgs) Handles TBatasHari.KeyPress, TBatasBuku.KeyPress
+        If sender.Text = "" And Asc(e.KeyChar) = 48 Then e.Handled = 1
+        Angka(e)
+    End Sub
+
     Private Sub BTNSimpan_Click(sender As Object, e As EventArgs) Handles BTNSimpan.Click
         QR("SELECT Nama FROM TBLInfo")
         If Not DR.HasRows Then
