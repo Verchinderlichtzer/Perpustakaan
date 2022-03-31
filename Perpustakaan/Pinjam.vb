@@ -80,11 +80,6 @@ Public Class Pinjam
         Isi()
     End Sub
 
-    Private Sub InputAngka(sender As Object, e As KeyPressEventArgs)
-        If sender.Text = "" And Asc(e.KeyChar) = 48 Then e.Handled = 1
-        Angka(e)
-    End Sub
-
     Sub Hitung()
         QR("SELECT COUNT(ID) FROM TBLPinjam WHERE ID_Anggota = " & Val(TAnggota.SelectedItem.Substring(0, TAnggota.SelectedItem.IndexOf(" "))))
         Total = DR(0)
@@ -107,44 +102,6 @@ Public Class Pinjam
         TTelat.Text = Telat
         TRusak.Text = Rusak
         THilang.Text = Hilang
-    End Sub
-
-    Private Sub DGV_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs) Handles DGV.CellBeginEdit
-        Before = Nothing
-        If IsDBNull(DGV.CurrentCell.Value) Then Exit Sub
-        Before = DGV.CurrentCell.Value
-    End Sub
-
-    Private Sub DGV_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DGV.CellEndEdit
-        If Not (e.ColumnIndex = 4 Or e.ColumnIndex = 8 Or e.ColumnIndex = 9) Then Exit Sub
-        If (e.ColumnIndex = 4 AndAlso IsDate(DGV.CurrentCell.Value) AndAlso CDate(DGV.Rows(e.RowIndex).Cells(4).Value) > CDate(DGV.Rows(e.RowIndex).Cells(3).Value) And (DGV.CurrentCell.Value Like "##-##-####" Or DGV.CurrentCell.Value Like "##-#-####" Or DGV.CurrentCell.Value Like "#-##-####" Or DGV.CurrentCell.Value Like "#-#-####")) Or (Not e.ColumnIndex = 4 And Not IsNothing(DGV.CurrentCell.Value)) Then GoTo 2 Else GoTo 1
-1:      DGV.CurrentCell.Value = Before
-        Pesan("Data tidak valid", 0)
-        Exit Sub
-2:      If e.ColumnIndex = 4 Then
-            QN("EXEC UpdateKembali '" & DGV.Rows(e.RowIndex).Cells(4).Value & "'," & DGV.Rows(e.RowIndex).Cells(0).Value)
-            DGV.Rows(e.RowIndex).Cells(6).ReadOnly = 0
-            DGV.Rows(e.RowIndex).Cells(7).ReadOnly = 0
-            DGV.Rows(e.RowIndex).Cells(8).ReadOnly = 0
-            DGV.Rows(e.RowIndex).Cells(9).ReadOnly = 0
-            DGV.Rows(e.RowIndex).Cells(10).ReadOnly = 0
-        ElseIf e.ColumnIndex = 8 Then
-            QN("UPDATE TBLPinjam SET Keterangan = '" & DGV.Rows(e.RowIndex).Cells(8).Value & "' WHERE ID = " & DGV.Rows(e.RowIndex).Cells(0).Value)
-        ElseIf e.ColumnIndex = 9 Then
-            QN("UPDATE TBLPinjam SET Denda = " & Val(DGV.Rows(e.RowIndex).Cells(9).Value) & " WHERE ID = " & DGV.Rows(e.RowIndex).Cells(0).Value)
-        End If
-    End Sub
-
-    Private Sub DGV_EditingControlShowing(sender As Object, e As DataGridViewEditingControlShowingEventArgs) Handles DGV.EditingControlShowing
-        Dim Angka As TextBox = CType(e.Control, TextBox)
-        Dim Tanggal As TextBox = CType(e.Control, TextBox)
-        RemoveHandler Tanggal.KeyPress, AddressOf Tanggal_KeyPress
-        RemoveHandler Angka.KeyPress, AddressOf Angka_KeyPress
-        If DGV.CurrentCell.ColumnIndex = 4 Then
-            AddHandler Tanggal.KeyPress, AddressOf Tanggal_KeyPress
-        ElseIf DGV.CurrentCell.ColumnIndex = 9 Then
-            AddHandler Angka.KeyPress, AddressOf Angka_KeyPress
-        End If
     End Sub
 
 #Region "Print / Delete / Clear"
@@ -172,7 +129,7 @@ Public Class Pinjam
         If Not DR.HasRows Then
             Pesan("Pilih peminjaman di atas.", 0)
         Else
-            Dim Confirm As New Konfirmasi("Konfirmasi Hapus", "Hapus " & DR(0) & "?")
+            Dim Confirm As New Konfirmasi("Konfirmasi Hapus", "Hapus peminjaman buku terpilih?")
             If Confirm.ShowDialog() = DialogResult.Yes Then
                 QN("DELETE FROM TBLPinjam WHERE ID = " & DGV.Rows(RowTerpilih).Cells(0).Value)
                 If DGV.Rows(RowTerpilih).Cells(7).Value = 0 Then 'Masih Utuh
@@ -360,6 +317,7 @@ Public Class Pinjam
                 DGV.Rows(e.RowIndex).Cells(9).Value = 0
                 QN("UPDATE TBLPinjam SET Denda = 0 WHERE ID = " & DGV.Rows(e.RowIndex).Cells(0).Value)
                 If CDate(DGV.Rows(e.RowIndex).Cells(4).Value) < Today Then
+                    QN("UPDATE TBLPinjam SET Telat = 1 WHERE ID = " & DGV.Rows(e.RowIndex).Cells(0).Value)
                     DGV.Rows(e.RowIndex).Cells(5).Value = 1
                     Telat += 1
                 End If
@@ -371,18 +329,18 @@ Public Class Pinjam
             If DGV.Rows(e.RowIndex).Cells(10).Value = 1 Then
                 DGV.Rows(e.RowIndex).Cells(6).ReadOnly = 1
                 DGV.Rows(e.RowIndex).Cells(7).ReadOnly = 1
+                Dipinjam -= 1
                 If DGV.Rows(e.RowIndex).Cells(7).Value = 0 Then
                     QN("UPDATE TBLBuku SET Stok += 1 WHERE ID_Buku = " & DGV.Rows(e.RowIndex).Cells(1).Value)
                     Kembali += 1
-                    Dipinjam -= 1
                 End If
             ElseIf DGV.Rows(e.RowIndex).Cells(10).Value = 0 Then
                 DGV.Rows(e.RowIndex).Cells(6).ReadOnly = 0
                 DGV.Rows(e.RowIndex).Cells(7).ReadOnly = 0
+                Dipinjam += 1
                 If DGV.Rows(e.RowIndex).Cells(7).Value = 0 Then
                     QN("UPDATE TBLBuku SET Stok -= 1 WHERE ID_Buku = " & DGV.Rows(e.RowIndex).Cells(1).Value)
                     Kembali -= 1
-                    Dipinjam += 1
                 End If
             End If
             TampilDGVBuku()
@@ -395,6 +353,44 @@ Public Class Pinjam
             DGV.Rows(e.RowIndex).Cells(4).Style.SelectionForeColor = Color.FromArgb(64, 64, 64)
         End If
         Isi()
+    End Sub
+
+    Private Sub DGV_EditingControlShowing(sender As Object, e As DataGridViewEditingControlShowingEventArgs) Handles DGV.EditingControlShowing
+        Dim Angka As TextBox = CType(e.Control, TextBox)
+        Dim Tanggal As TextBox = CType(e.Control, TextBox)
+        RemoveHandler Tanggal.KeyPress, AddressOf Tanggal_KeyPress
+        RemoveHandler Angka.KeyPress, AddressOf Angka_KeyPress
+        If DGV.CurrentCell.ColumnIndex = 4 Then
+            AddHandler Tanggal.KeyPress, AddressOf Tanggal_KeyPress
+        ElseIf DGV.CurrentCell.ColumnIndex = 9 Then
+            AddHandler Angka.KeyPress, AddressOf Angka_KeyPress
+        End If
+    End Sub
+
+    Private Sub DGV_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs) Handles DGV.CellBeginEdit
+        Before = Nothing
+        If IsDBNull(DGV.CurrentCell.Value) Then Exit Sub
+        Before = DGV.CurrentCell.Value
+    End Sub
+
+    Private Sub DGV_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DGV.CellEndEdit
+        If Not (e.ColumnIndex = 4 Or e.ColumnIndex = 8 Or e.ColumnIndex = 9) Then Exit Sub
+        If (e.ColumnIndex = 4 AndAlso IsDate(DGV.CurrentCell.Value) AndAlso CDate(DGV.Rows(e.RowIndex).Cells(4).Value) > CDate(DGV.Rows(e.RowIndex).Cells(3).Value) And (DGV.CurrentCell.Value Like "##-##-####" Or DGV.CurrentCell.Value Like "##-#-####" Or DGV.CurrentCell.Value Like "#-##-####" Or DGV.CurrentCell.Value Like "#-#-####")) Or (Not e.ColumnIndex = 4 And True) Then GoTo 2 Else GoTo 1
+1:      DGV.CurrentCell.Value = Before
+        Pesan("Data tidak valid", 0)
+        Exit Sub
+2:      If e.ColumnIndex = 4 Then
+            QN("EXEC UpdateKembali '" & DGV.Rows(e.RowIndex).Cells(4).Value & "'," & DGV.Rows(e.RowIndex).Cells(0).Value)
+            DGV.Rows(e.RowIndex).Cells(6).ReadOnly = 0
+            DGV.Rows(e.RowIndex).Cells(7).ReadOnly = 0
+            DGV.Rows(e.RowIndex).Cells(8).ReadOnly = 0
+            DGV.Rows(e.RowIndex).Cells(9).ReadOnly = 0
+            DGV.Rows(e.RowIndex).Cells(10).ReadOnly = 0
+        ElseIf e.ColumnIndex = 8 Then
+            QN("UPDATE TBLPinjam SET Keterangan = '" & DGV.Rows(e.RowIndex).Cells(8).Value & "' WHERE ID = " & DGV.Rows(e.RowIndex).Cells(0).Value)
+        ElseIf e.ColumnIndex = 9 Then
+            QN("UPDATE TBLPinjam SET Denda = " & Val(DGV.Rows(e.RowIndex).Cells(9).Value) & " WHERE ID = " & DGV.Rows(e.RowIndex).Cells(0).Value)
+        End If
     End Sub
 
     Private Sub DGVPrev_Click(sender As Object, e As EventArgs) Handles DGVPrev.Click

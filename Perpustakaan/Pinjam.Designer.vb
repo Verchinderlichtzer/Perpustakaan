@@ -24,11 +24,11 @@ Partial Class Pinjam
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Pinjam))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TAnggota = New Krypton.Toolkit.KryptonComboBox()
         Me.PaletPrimer = New Krypton.Toolkit.KryptonPalette(Me.components)
         Me.LBLRusak = New Krypton.Toolkit.KryptonLabel()
@@ -39,6 +39,18 @@ Partial Class Pinjam
         Me.TRusak = New Krypton.Toolkit.KryptonTextBox()
         Me.TTelat = New Krypton.Toolkit.KryptonTextBox()
         Me.DGV = New Krypton.Toolkit.KryptonDataGridView()
+        Me.CID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CIDBuku = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CJudul = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CTglPinjam = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CTglKembali = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CTelat = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.CRusak = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.CHilang = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.CKeterangan = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CDenda = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CStatus = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.CHarga = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DGVBuku = New Krypton.Toolkit.KryptonDataGridView()
         Me.LBLAnggota = New Krypton.Toolkit.KryptonLabel()
         Me.TTotal = New Krypton.Toolkit.KryptonTextBox()
@@ -59,18 +71,7 @@ Partial Class Pinjam
         Me.Rdt = New Perpustakaan.Rdt()
         Me.TBLPinjamBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.TBLPinjamTableAdapter = New Perpustakaan.RdtTableAdapters.TBLPinjamTableAdapter()
-        Me.CID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CIDBuku = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CJudul = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CTglPinjam = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CTglKembali = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CTelat = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.CRusak = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.CHilang = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.CKeterangan = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CDenda = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CStatus = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.CHarga = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.TAnggota, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DGV, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DGVBuku, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -315,8 +316,8 @@ Partial Class Pinjam
         Me.DGV.AllowUserToDeleteRows = False
         Me.DGV.AllowUserToResizeColumns = False
         Me.DGV.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.DGV.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.DGV.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle6
         Me.DGV.ColumnHeadersHeight = 27
         Me.DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.DGV.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CID, Me.CIDBuku, Me.CJudul, Me.CTglPinjam, Me.CTglKembali, Me.CTelat, Me.CRusak, Me.CHilang, Me.CKeterangan, Me.CDenda, Me.CStatus, Me.CHarga})
@@ -351,14 +352,131 @@ Partial Class Pinjam
         Me.DGV.StateTracking.HeaderColumn.Back.Color1 = System.Drawing.Color.FromArgb(CType(CType(70, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(121, Byte), Integer))
         Me.DGV.TabIndex = 3
         '
+        'CID
+        '
+        Me.CID.HeaderText = "ID"
+        Me.CID.Name = "CID"
+        Me.CID.ReadOnly = True
+        Me.CID.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.CID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.CID.Visible = False
+        '
+        'CIDBuku
+        '
+        Me.CIDBuku.HeaderText = "ID Buku"
+        Me.CIDBuku.Name = "CIDBuku"
+        Me.CIDBuku.ReadOnly = True
+        Me.CIDBuku.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.CIDBuku.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.CIDBuku.Visible = False
+        '
+        'CJudul
+        '
+        Me.CJudul.HeaderText = "Judul"
+        Me.CJudul.Name = "CJudul"
+        Me.CJudul.ReadOnly = True
+        Me.CJudul.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.CJudul.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.CJudul.Width = 170
+        '
+        'CTglPinjam
+        '
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.CTglPinjam.DefaultCellStyle = DataGridViewCellStyle7
+        Me.CTglPinjam.HeaderText = "Tgl Pinjam"
+        Me.CTglPinjam.MaxInputLength = 10
+        Me.CTglPinjam.Name = "CTglPinjam"
+        Me.CTglPinjam.ReadOnly = True
+        Me.CTglPinjam.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.CTglPinjam.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.CTglPinjam.Width = 107
+        '
+        'CTglKembali
+        '
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.CTglKembali.DefaultCellStyle = DataGridViewCellStyle8
+        Me.CTglKembali.HeaderText = "Tgl Kembali"
+        Me.CTglKembali.MaxInputLength = 10
+        Me.CTglKembali.Name = "CTglKembali"
+        Me.CTglKembali.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.CTglKembali.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.CTglKembali.Width = 107
+        '
+        'CTelat
+        '
+        Me.CTelat.FalseValue = "0"
+        Me.CTelat.HeaderText = "Telat"
+        Me.CTelat.Name = "CTelat"
+        Me.CTelat.ReadOnly = True
+        Me.CTelat.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.CTelat.TrueValue = "1"
+        Me.CTelat.Width = 60
+        '
+        'CRusak
+        '
+        Me.CRusak.FalseValue = "0"
+        Me.CRusak.HeaderText = "Rusak"
+        Me.CRusak.Name = "CRusak"
+        Me.CRusak.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.CRusak.TrueValue = "1"
+        Me.CRusak.Width = 60
+        '
+        'CHilang
+        '
+        Me.CHilang.FalseValue = "0"
+        Me.CHilang.HeaderText = "Hilang"
+        Me.CHilang.Name = "CHilang"
+        Me.CHilang.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.CHilang.TrueValue = "1"
+        Me.CHilang.Width = 60
+        '
+        'CKeterangan
+        '
+        Me.CKeterangan.HeaderText = "Keterangan"
+        Me.CKeterangan.MaxInputLength = 200
+        Me.CKeterangan.Name = "CKeterangan"
+        Me.CKeterangan.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.CKeterangan.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.CKeterangan.Width = 151
+        '
+        'CDenda
+        '
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle9.Format = "#,##0"
+        Me.CDenda.DefaultCellStyle = DataGridViewCellStyle9
+        Me.CDenda.HeaderText = "Denda"
+        Me.CDenda.MaxInputLength = 6
+        Me.CDenda.Name = "CDenda"
+        Me.CDenda.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.CDenda.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.CDenda.Width = 87
+        '
+        'CStatus
+        '
+        Me.CStatus.FalseValue = "0"
+        Me.CStatus.HeaderText = "Status"
+        Me.CStatus.Name = "CStatus"
+        Me.CStatus.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.CStatus.TrueValue = "1"
+        Me.CStatus.Width = 60
+        '
+        'CHarga
+        '
+        Me.CHarga.HeaderText = "Harga"
+        Me.CHarga.Name = "CHarga"
+        Me.CHarga.ReadOnly = True
+        Me.CHarga.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.CHarga.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.CHarga.Visible = False
+        '
         'DGVBuku
         '
         Me.DGVBuku.AllowUserToAddRows = False
         Me.DGVBuku.AllowUserToDeleteRows = False
         Me.DGVBuku.AllowUserToResizeColumns = False
         Me.DGVBuku.AllowUserToResizeRows = False
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.DGVBuku.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle10.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.DGVBuku.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle10
         Me.DGVBuku.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DGVBuku.ColumnHeadersHeight = 27
         Me.DGVBuku.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
@@ -855,122 +973,9 @@ Partial Class Pinjam
         '
         Me.TBLPinjamTableAdapter.ClearBeforeFill = True
         '
-        'CID
+        'Timer1
         '
-        Me.CID.HeaderText = "ID"
-        Me.CID.Name = "CID"
-        Me.CID.ReadOnly = True
-        Me.CID.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.CID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.CID.Visible = False
-        '
-        'CIDBuku
-        '
-        Me.CIDBuku.HeaderText = "ID Buku"
-        Me.CIDBuku.Name = "CIDBuku"
-        Me.CIDBuku.ReadOnly = True
-        Me.CIDBuku.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.CIDBuku.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.CIDBuku.Visible = False
-        '
-        'CJudul
-        '
-        Me.CJudul.HeaderText = "Judul"
-        Me.CJudul.Name = "CJudul"
-        Me.CJudul.ReadOnly = True
-        Me.CJudul.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.CJudul.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.CJudul.Width = 170
-        '
-        'CTglPinjam
-        '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.CTglPinjam.DefaultCellStyle = DataGridViewCellStyle2
-        Me.CTglPinjam.HeaderText = "Tgl Pinjam"
-        Me.CTglPinjam.MaxInputLength = 10
-        Me.CTglPinjam.Name = "CTglPinjam"
-        Me.CTglPinjam.ReadOnly = True
-        Me.CTglPinjam.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.CTglPinjam.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.CTglPinjam.Width = 107
-        '
-        'CTglKembali
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.CTglKembali.DefaultCellStyle = DataGridViewCellStyle3
-        Me.CTglKembali.HeaderText = "Tgl Kembali"
-        Me.CTglKembali.MaxInputLength = 10
-        Me.CTglKembali.Name = "CTglKembali"
-        Me.CTglKembali.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.CTglKembali.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.CTglKembali.Width = 107
-        '
-        'CTelat
-        '
-        Me.CTelat.FalseValue = "0"
-        Me.CTelat.HeaderText = "Telat"
-        Me.CTelat.Name = "CTelat"
-        Me.CTelat.ReadOnly = True
-        Me.CTelat.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.CTelat.TrueValue = "1"
-        Me.CTelat.Width = 60
-        '
-        'CRusak
-        '
-        Me.CRusak.FalseValue = "0"
-        Me.CRusak.HeaderText = "Rusak"
-        Me.CRusak.Name = "CRusak"
-        Me.CRusak.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.CRusak.TrueValue = "1"
-        Me.CRusak.Width = 60
-        '
-        'CHilang
-        '
-        Me.CHilang.FalseValue = "0"
-        Me.CHilang.HeaderText = "Hilang"
-        Me.CHilang.Name = "CHilang"
-        Me.CHilang.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.CHilang.TrueValue = "1"
-        Me.CHilang.Width = 60
-        '
-        'CKeterangan
-        '
-        Me.CKeterangan.HeaderText = "Keterangan"
-        Me.CKeterangan.MaxInputLength = 200
-        Me.CKeterangan.Name = "CKeterangan"
-        Me.CKeterangan.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.CKeterangan.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.CKeterangan.Width = 151
-        '
-        'CDenda
-        '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle4.Format = "#,##0"
-        Me.CDenda.DefaultCellStyle = DataGridViewCellStyle4
-        Me.CDenda.HeaderText = "Denda"
-        Me.CDenda.MaxInputLength = 6
-        Me.CDenda.Name = "CDenda"
-        Me.CDenda.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.CDenda.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.CDenda.Width = 87
-        '
-        'CStatus
-        '
-        Me.CStatus.FalseValue = "0"
-        Me.CStatus.HeaderText = "Status"
-        Me.CStatus.Name = "CStatus"
-        Me.CStatus.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.CStatus.TrueValue = "1"
-        Me.CStatus.Width = 60
-        '
-        'CHarga
-        '
-        Me.CHarga.HeaderText = "Harga"
-        Me.CHarga.Name = "CHarga"
-        Me.CHarga.ReadOnly = True
-        Me.CHarga.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.CHarga.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.CHarga.Visible = False
+        Me.Timer1.Interval = 1000
         '
         'Pinjam
         '
@@ -1056,4 +1061,5 @@ Partial Class Pinjam
     Friend WithEvents CDenda As DataGridViewTextBoxColumn
     Friend WithEvents CStatus As DataGridViewCheckBoxColumn
     Friend WithEvents CHarga As DataGridViewTextBoxColumn
+    Friend WithEvents Timer1 As Timer
 End Class
